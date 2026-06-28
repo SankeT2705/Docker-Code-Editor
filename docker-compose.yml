@@ -1,0 +1,22 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - CORS_ORIGIN=*
+      - HOST_PWD=${PWD} # <--- ADD THIS LINE
+    # Mount Docker socket so the container can spawn language execution containers
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./runner:/app/runner
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'wget', '-qO-', 'http://localhost:3000/health']
+      interval: 30s
+      timeout: 5s
+      retries: 3

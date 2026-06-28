@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Custom scrollbar for output panel */
+.output-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.output-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.output-scroll::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 3px;
+}
+
+/* User cursor label in Monaco */
+.yRemoteSelectionHead {
+  position: absolute;
+  border-left: 2px solid;
+  height: 100%;
+}
+
+.yRemoteSelectionHead::after {
+  content: attr(data-user);
+  position: absolute;
+  top: -20px;
+  left: -2px;
+  font-size: 11px;
+  font-family: sans-serif;
+  padding: 1px 6px;
+  border-radius: 3px 3px 3px 0;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/* Range input custom styling */
+input[type='range'] {
+  accent-color: #f59e0b;
+}
